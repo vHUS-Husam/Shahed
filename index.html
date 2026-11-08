@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#080a1b" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>عيد ميلاد شهودة🎂</title>
+  <meta name="description" content="هدية عيد ميلاد خاصة بشهد" />
+  <meta property="og:title" content="عيد ميلاد شهودة🎂" />
+  <meta property="og:description" content="في هدية بتستناكي… بس لازم تعرفي الكلمة 🤍" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="default.css" />
+</head>
+<body data-stage="intro">
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <canvas id="fx" aria-hidden="true"></canvas>
+
+  <!-- ===== البوابة: مقدمة ثم كلمة السر ===== -->
+  <div class="gate" id="gate" data-stage="intro">
+    <section class="gate-pane gate-intro" aria-labelledby="introTitle">
+      <p class="intro-kicker">لبنت خالي وأختي وصديقتي 🩵</p>
+      <h1 id="introTitle" class="intro-title">عيد ميلاد شهودة</h1>
+      <p class="intro-sub">لأختشي وصديقتي اللي الدنيا أحلى بوجودها ✨</p>
+      <button class="btn btn-primary" id="startCelebration" type="button">ابدأ الاحتفال</button>
+    </section>
+
+    <section class="gate-pane gate-lock" aria-labelledby="lockTitle">
+      <div class="gift" id="gift" aria-hidden="true">
+        <span class="gift-lid"></span>
+        <span class="gift-body"></span>
+        <span class="gift-ribbon-v"></span>
+        <span class="gift-glow"></span>
+      </div>
+
+      <h2 id="lockTitle" class="lock-title">جاهزة تفتحي هديتك؟ 🤍</h2>
+      <p class="lock-sub" id="lockLabel">تاريخ ميلادك 🎂</p>
+
+      <div class="pin-dots" id="pinDots" role="img" aria-label="كلمة السر: لم تُدخل أي رقم بعد">
+        <i></i><i></i><i></i><i></i>
+      </div>
+      <p class="pin-msg" id="pinMsg" aria-live="polite"></p>
+
+      <div class="keypad" id="keypad">
+        <button type="button" data-k="1">1</button>
+        <button type="button" data-k="2">2</button>
+        <button type="button" data-k="3">3</button>
+        <button type="button" data-k="4">4</button>
+        <button type="button" data-k="5">5</button>
+        <button type="button" data-k="6">6</button>
+        <button type="button" data-k="7">7</button>
+        <button type="button" data-k="8">8</button>
+        <button type="button" data-k="9">9</button>
+        <button type="button" data-k="back" class="key-aux" aria-label="حذف رقم">⌫</button>
+        <button type="button" data-k="0">0</button>
+        <button type="button" data-k="ok" class="key-aux key-ok" aria-label="فتح الهدية">فتح</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== شريط علوي ===== -->
+  <header class="topbar" id="topbar">
+    <span class="top-tag">✦ A LITTLE UNIVERSE FOR SHAHED ✦</span>
+  </header>
+
+  <button id="musicToggle" class="music-toggle" type="button" aria-pressed="false" aria-label="تشغيل الموسيقى" title="تشغيل الموسيقى">
+    <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <span class="music-off" aria-hidden="true">🔇</span>
+  </button>
+
+  <!-- ===== القصة ===== -->
+  <main class="story" id="story" inert>
+
+    <!-- 1) البداية -->
+    <section class="chapter hero" id="hero" aria-labelledby="heroName">
+      <div class="hero-main">
+        <p class="hero-over">لبنت خالي الحرباي</p>
+        <h2 class="hero-name" id="heroName">شهودة</h2>
+        <p class="hero-soft">أختي وصديقتي وبرو العمر</p>
+        <p class="hero-wish">عيد ميلاد سعيد 🩵</p>
+        <p class="hero-msg">كل سنة وأنتي أخت وصديقة غالية وضحكتك منورة أيامنا 🌷</p>
+        <div class="hero-meta">
+          <span class="chip">8 / 11 / 2005</span>
+          <span class="chip chip-age"><b id="ageValue">0</b> سنة</span>
+        </div>
+        <p class="today-banner" id="todayBanner" hidden>🎉 اليوم يومك كل عام وأنتي بخير 🎉</p>
+      </div>
+
+      <div class="hero-clock" aria-label="عدّادات الوقت">
+        <div class="clock-row">
+          <p class="clock-title">مرّ على ميلادك</p>
+          <dl class="clock" id="sinceClock">
+            <div><dd data-u="d">0</dd><dt>يوم</dt></div>
+            <div><dd data-u="h">0</dd><dt>ساعة</dt></div>
+            <div><dd data-u="m">0</dd><dt>دقيقة</dt></div>
+            <div><dd data-u="s">0</dd><dt>ثانية</dt></div>
+          </dl>
+        </div>
+        <div class="clock-row">
+          <p class="clock-title">باقي على ميلادك القادم</p>
+          <dl class="clock" id="nextClock">
+            <div><dd data-u="d">0</dd><dt>يوم</dt></div>
+            <div><dd data-u="h">0</dd><dt>ساعة</dt></div>
+            <div><dd data-u="m">0</dd><dt>دقيقة</dt></div>
+            <div><dd data-u="s">0</dd><dt>ثانية</dt></div>
+          </dl>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#cakeChapter" aria-label="انزلي لتحت">
+        <span>🎂</span>
+      </a>
+    </section>
+
+    <!-- 2) الكيكة والشمعة -->
+    <section class="chapter cake-chapter" id="cakeChapter" aria-labelledby="cakeTitle">
+      <h2 class="chapter-title" id="cakeTitle">تمني أمنية</h2>
+      <p class="chapter-lead" id="cakeStatus" aria-live="polite">غمضي عيونك اتمني أمنية… انفخي الشمعة.</p>
+
+      <div class="cake-stage">
+        <div class="cake" id="cake">
+          <div class="candles" id="candles"></div>
+          <div class="tier tier-top"></div>
+          <div class="tier tier-bottom"></div>
+          <div class="plate"></div>
+          <div class="smoke" id="smoke" aria-hidden="true"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+
+      <div class="cake-actions">
+        <button class="btn btn-primary" id="blowBtn" type="button">انفخي الشمعة 🎤</button>
+        <button class="btn btn-ghost" id="relightBtn" type="button" hidden>ولعي الشمعة من جديد</button>
+      </div>
+      <p class="fine" id="blowHint">أو اضغطي على الشمعة مباشرة</p>
+    </section>
+
+    <!-- 3) بالونات الأمنيات -->
+    <section class="chapter balloon-chapter" id="balloonChapter" aria-labelledby="balloonTitle">
+      <h2 class="chapter-title" id="balloonTitle">بالونات الأمنيات</h2>
+      <p class="chapter-lead">افقعي كل بالون تحتو أمنية إلك.</p>
+      <div class="balloon-stage" id="balloonStage"></div>
+      <p class="wish-out" id="wishOut" aria-live="polite">اكبسي على أي بالون 🎈</p>
+      <p class="fine"><span id="wishCount">0</span> من <span id="wishTotal">6</span></p>
+      <button class="btn btn-ghost" id="balloonsReset" type="button" hidden>انفخي بالونات جديدة</button>
+    </section>
+
+    <!-- 4) لعبة الذاكرة -->
+    <section class="chapter game-chapter" id="gameChapter" aria-labelledby="gameTitle">
+      <h2 class="chapter-title" id="gameTitle">لعبة الذاكرة</h2>
+      <p class="chapter-lead" id="gamePrompt">اكتشفي الأزواج المتطابقة 💞 ومن يفوز يفتح الرسالة.</p>
+
+      <div class="game-stats" aria-live="off">
+        <span>الحركات <b id="gMoves">0</b></span>
+        <span>الوقت <b id="gTime">0:00</b></span>
+        <span>أفضل نتيجة <b id="gBest">—</b></span>
+      </div>
+
+      <div class="memory-grid" id="memoryGrid" role="group" aria-label="لعبة الذاكرة"></div>
+      <p class="game-status" id="gameStatus" aria-live="polite"></p>
+      <button class="btn btn-ghost" id="gameReset" type="button">لعبة جديدة</button>
+    </section>
+
+    <!-- 5) الرسالة -->
+    <section class="chapter letter-chapter" id="letterChapter" aria-labelledby="letterTitle">
+      <h2 class="chapter-title" id="letterTitle">رسالة إلك</h2>
+
+      <div class="sealed" id="sealed">
+        <div class="envelope" aria-hidden="true">
+          <span class="env-flap"></span>
+          <span class="env-seal">🤍</span>
+        </div>
+        <p class="sealed-text" id="sealedText">الرسالة مقفولة 🔒<br />افتحيها بالفوز في لعبة الذاكرة.</p>
+      </div>
+
+      <article class="letter" id="letter" hidden>
+        <div class="letter-body" id="letterBody"></div>
+        <div class="letter-tools">
+          <button class="btn btn-ink" id="letterSkip" type="button">اعرضي الرسالة كاملة</button>
+        </div>
+      </article>
+    </section>
+
+    <!-- 6) صور (تظهر فقط إذا أضفتَ صوراً في CONFIG) -->
+    <section class="chapter gallery-chapter" id="galleryChapter" aria-labelledby="galleryTitle" hidden>
+      <h2 class="chapter-title" id="galleryTitle">ذكريات حلوة</h2>
+      <div class="gallery" id="gallery"></div>
+    </section>
+
+    <footer class="chapter foot">
+      <p class="foot-line">لفيو أختشي والبرو الغالي 🩵</p>
+      <button class="btn btn-ghost" id="replayGift" type="button">افتحي الهدية مرة ثانية</button>
+    </footer>
+  </main>
+
+  <audio id="birthdayAudio" loop preload="none" src="aud.mp3"></audio>
+  <noscript><p style="position:relative;z-index:99;padding:2rem;text-align:center">فعّلي الجافاسكربت لتفتح الهدية 🎁</p></noscript>
+
+  <script src="functions.js"></script>
+</body>
+</html>
